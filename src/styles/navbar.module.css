@@ -1,0 +1,57 @@
+.container{
+    display: flex;
+    justify-content: space-between;
+    padding: 1.5rem 0;
+    max-height: 2rem;
+}
+.categories{
+    display: flex;
+    margin-left: 4rem;
+}
+.navlink{
+    margin: 0 1rem;
+    font-weight: 500;
+    padding-bottom: 1rem;
+    text-decoration: none;
+    color: #000;
+    transition: 0.1s;
+}
+.navlink:hover{
+    color: rgb(43, 248, 111);
+    font-weight: 600;
+    padding-bottom: 1rem;
+    transition: 0.1s;
+    border-bottom: 2px solid rgb(43, 248, 111);
+}
+.activenav{
+    color: rgb(43, 248, 111);
+    font-weight: 600;
+    padding-bottom: 1rem;
+    transition: 0.1s;
+    border-bottom: 2px solid rgb(43, 248, 111);
+}
+.clientcontainer{
+    display: flex;
+    margin-right: 6rem;
+}
+.currencycontainer{
+    display: flex;
+    flex-direction: column;
+}
+.currencycontainer h4{
+    margin: 0rem 1rem;
+    font-weight: 500;
+}
+.currency:not(:first-child){
+    margin-top: 1rem;
+}
+.cartcontainer{
+    display: flex;
+    margin: 0 1rem;
+}
+.cartcontainer img{
+    max-width: 1.5rem;
+    margin: 0;
+    position: fixed;
+    top: 1.2rem;
+}
