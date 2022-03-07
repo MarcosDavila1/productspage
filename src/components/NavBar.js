@@ -4,6 +4,8 @@ import { getCategories, getCurrencies } from '../redux/action';
 import styles from '../styles/navbar.module.css'
 import cart from '../images/cart.png'
 import { NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
+import bag from '../images/bag.png'
 
 class NavBar extends Component {
     constructor(props) {
@@ -37,6 +39,9 @@ class NavBar extends Component {
                         ))
                     )}
                 </div>
+                <div className={styles.bag}>
+                    <img src={bag} alt="bag logo"/>
+                </div>
                 <div className={styles.clientcontainer}>
                     <div className={styles.currencycontainer}>
                         {this.props.currencies.length > 0 && (
@@ -48,7 +53,14 @@ class NavBar extends Component {
                         )}
                     </div>
                     <div className={styles.cartcontainer}>
-                        <img src={cart} alt='cart logo'/>
+                        <Link to={'/resume/cart'}>
+                            <img src={cart} alt='cart logo'/>  
+                        </Link>                      
+                    </div>
+                    <div className={styles.cartlength}>
+                        {this.props.cart.length > 0 && (
+                            <p>{this.props.cart.length}</p>
+                        )}
                     </div>
                 </div>
             </div>
@@ -59,7 +71,8 @@ class NavBar extends Component {
 function mapStateToProps(state){
     return{
         categories: state.categories,
-        currencies: state.currencies
+        currencies: state.currencies,
+        cart: state.cart
     }
 }
 

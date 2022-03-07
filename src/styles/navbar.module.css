@@ -30,6 +30,11 @@
     transition: 0.1s;
     border-bottom: 2px solid rgb(43, 248, 111);
 }
+.bag img{
+    max-width: 2rem;
+    max-height: 2rem;
+    margin-right: 3rem;
+}
 .clientcontainer{
     display: flex;
     margin-right: 6rem;
@@ -47,6 +52,7 @@
 }
 .cartcontainer{
     display: flex;
+    flex-direction: row;
     margin: 0 1rem;
 }
 .cartcontainer img{
@@ -54,4 +60,12 @@
     margin: 0;
     position: fixed;
     top: 1.2rem;
+}
+.cartlength p{
+    font-weight: 500;
+    background-color: #000;
+    padding: 0.2rem 0.3rem;
+    border-radius: 1rem;
+    color: #fff;
+    transition: 0.5s;
 }

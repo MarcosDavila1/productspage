@@ -28,8 +28,19 @@ export function getProducts(){
                     categories{
                         name
                         products{
+                            id
                           name
                           gallery
+                          category
+                          brand
+                          description
+                          attributes{
+                            name
+                            items{
+                              displayValue
+                              value
+                            }
+                          }
                           prices{
                             currency{
                               label
@@ -69,5 +80,19 @@ export function getCurrencies(){
         } catch (error) {
             return console.log(error)
         }
+    }
+}
+
+export function getProductDetail(category,id){
+    return{
+        type: 'GET_PRODUCT_DETAIL',
+        payload: {category, id}
+    }
+}
+
+export function addCart(product){
+    return{
+        type: 'ADD_CART',
+        payload: product
     }
 }

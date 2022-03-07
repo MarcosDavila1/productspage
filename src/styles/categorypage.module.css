@@ -23,6 +23,7 @@
     margin-bottom: 4rem;
     border: 10px solid #fff;
     min-width: 15rem;
+    text-decoration: none;
 }
 .cards:hover{
     box-shadow: 1px 1px 10px 5px rgb(167, 167, 167);
@@ -30,6 +31,7 @@
 .cards h4{
     display: flex;
     font-weight: 400;
+    color: #000;
 }
 .cards h4:first-of-type{
     color: rgb(108, 108, 108);

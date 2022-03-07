@@ -1,7 +1,10 @@
 const initialState = {
     categories: [],
     products: [],
-    currencies: []
+    allProducts: [],
+    productDetail: {},
+    currencies: [],
+    cart:[]
 }
 
 const reducer = (state = initialState, action) => {
@@ -15,13 +18,28 @@ const reducer = (state = initialState, action) => {
         case 'GET_PRODUCTS':
             return{
                 ...state,
-                products: action.payload
+                products: action.payload,
+                allProducts: action.payload
             }
 
         case 'GET_CURRENCYS':
             return{
                 ...state,
                 currencies: action.payload.data.currencies
+            }
+
+        case 'GET_PRODUCT_DETAIL':
+            const indexCategory = [...state.allProducts?.data?.categories].findIndex(el => el.name === action.payload.category)
+            const product = [...state.allProducts?.data?.categories[indexCategory].products].filter(el => el.id === action.payload.id)
+            return{
+                ...state,
+                productDetail: product
+            }
+
+        case 'ADD_CART':
+            return{
+                ...state,
+                cart: [...state.cart, action.payload[0]]
             }
 
         default:

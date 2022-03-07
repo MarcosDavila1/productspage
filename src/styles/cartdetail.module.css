@@ -1,0 +1,72 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.title{
+    font-size: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+    margin-left: 5rem;
+}
+.containeritem{
+    display: flex;
+    border-top: 1px solid rgb(168, 168, 168);  
+    width: 100%;
+    justify-content: space-between; 
+    max-height: 15rem; 
+}
+.containeritem:last-child{
+    border-bottom: 1px solid rgb(168, 168, 168);
+    margin-bottom: 8rem;
+}
+.infoitem{
+    margin-left: 5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+.name{
+    font-weight: 600;
+    font-size: 1.5rem;
+    margin-bottom: 0;
+}
+.brand{
+    font-weight: 400;
+    font-size: 1.5rem;
+    margin-top: 1rem;
+    margin-bottom: 0;
+}
+.amount{
+    margin-top: 1rem;
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+.btn{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    justify-content: center;
+    margin-right: 1rem;
+}
+.btn button{
+    padding: 0.5rem;
+    background-color: transparent;
+    border: 1px solid #000;
+    transition: 0.2s;
+}
+.btn button:hover{
+    background-color: #000;
+    color: #fff;
+    transition: 0.2s;
+}
+.image{
+    margin-right: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.image img{
+    max-width: 10rem;
+    max-height: 10rem;
+}
