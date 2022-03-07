@@ -40,6 +40,7 @@
     font-weight: 400;
     font-size: 1.5rem;
     margin-top: 1rem;
+    margin-bottom: 0.5rem;
 }
 .price{
     margin-bottom: 0;
@@ -62,4 +63,21 @@
     cursor: pointer;
     background-color: rgb(25, 187, 79);
     transition: 0.3s;
+}
+.selectattributes{
+    display: flex;
+    align-items: center;
+}
+.selectattributes p{
+    margin: 0;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    background-color: transparent;
+    border: 1px solid #000;
+    transition: 0.2s;
+}
+.selectattributes p:hover{
+    background-color: #000;
+    color: #fff;
+    transition: 0.2s;
 }

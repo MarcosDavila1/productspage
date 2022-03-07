@@ -18,6 +18,7 @@ class ProductDetail extends Component {
     render() {
         const product = this.props.productDetail
         const description = product[0]?.description
+        console.log(product[0]?.attributes[0].items)
         return (
             <div className={styles.container}>
                 {product.length > 0 && (
@@ -34,8 +35,15 @@ class ProductDetail extends Component {
                             <h4 className={styles.name}>{product[0]?.name}</h4>
                             <h4 className={styles.brand}>{product[0]?.brand}</h4>
                             {product[0]?.attributes.map((el, i) => (
-                                <h4 key={i} className={styles.attribute}>{el.name.toUpperCase()}:</h4>
-                            ))}                            
+                                <Fragment key={i}>
+                                    <h4 className={styles.attribute}>{el.name.toUpperCase()}:</h4>
+                                    <div className={styles.selectattributes}>
+                                    {el.items.map((el, i) => (
+                                            <p key={i}>{el.displayValue}</p>
+                                    ))}
+                                    </div>
+                                </Fragment>
+                            ))}                          
                             <h4 className={styles.price}>PRICE:</h4>
                             <h4 className={styles.amount}>{product[0]?.prices[0].currency.symbol}{product[0].prices[0].amount}</h4>
                             <button onClick={(e)=>this.handleClick(e, product)} className={styles.btnaddcart}>Add to Cart</button>
