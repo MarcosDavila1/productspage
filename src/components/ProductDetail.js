@@ -25,7 +25,7 @@ class ProductDetail extends Component {
         const description = product[0]?.description
         const cIndex = this.props.currentCurrencyIndex
         return (
-            <div className={styles.container}>
+            <div id='backgrounddetail' className={styles.container}>
                 {product.length > 0 && (
                     <Fragment>
                         <div className={styles.previewimages}>

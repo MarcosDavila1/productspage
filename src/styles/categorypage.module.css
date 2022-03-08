@@ -19,9 +19,9 @@
     align-items: baseline;
 }
 .cards{
-    margin: 0 2rem;
+    margin: 0rem 2rem;
     margin-bottom: 4rem;
-    border: 10px solid #fff;
+    padding: 0.8rem;
     min-width: 15rem;
     text-decoration: none;
 }

@@ -16,7 +16,7 @@ class CategoryPage extends Component {
         const cIndex = this.props.currentCurrencyIndex
         console.log(cIndex)
         return (
-            <div className={styles.container}>
+            <div id='background' className={styles.container}>
                 <div className={styles.title}>
                     <h3>{category}</h3>
                 </div>
