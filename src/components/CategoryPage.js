@@ -13,6 +13,8 @@ class CategoryPage extends Component {
     render() {
         const category = this.props.match.params.category;
         const indexCategory = this.props.products.data?.categories.findIndex(el => el.name === category)
+        const cIndex = this.props.currentCurrencyIndex
+        console.log(cIndex)
         return (
             <div className={styles.container}>
                 <div className={styles.title}>
@@ -24,7 +26,7 @@ class CategoryPage extends Component {
                             <Link to={`/home/${el.category}/${el.id}`} key={i} className={styles.cards}>
                                 <img src={el.gallery[0]} alt={`${el.name}`}/>
                                 <h4>{el.name}</h4>
-                                <h4>{el.prices[0].currency.symbol}{el.prices[0].amount}</h4>
+                                <h4>{el.prices[cIndex].currency.symbol}{el.prices[cIndex].amount}</h4>
                             </Link>
                         ))
                     )}
@@ -36,7 +38,8 @@ class CategoryPage extends Component {
 
 function mapStateToProps(state){
     return{
-        products: state.products
+        products: state.products,
+        currentCurrencyIndex: state.currentCurrencyIndex
     }
 }
 

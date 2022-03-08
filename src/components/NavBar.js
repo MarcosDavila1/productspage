@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { getCategories, getCurrencies } from '../redux/action';
+import { getCategories, getCurrencies, setCurrentCurrency } from '../redux/action';
 import styles from '../styles/navbar.module.css'
 import cart from '../images/cart.png'
 import { NavLink } from 'react-router-dom';
@@ -26,7 +26,8 @@ class NavBar extends Component {
             return (prev.despliegue = !prev.despliegue,
                     prev.currency = e.target.innerText)
         })
-        console.log(this.state)
+        const pika = e.target.textContent.split(" ")
+        this.props.setCurrentCurrency(pika[1])
     }
 
     render() {
@@ -48,7 +49,7 @@ class NavBar extends Component {
                             !this.state.despliegue
                             ? <h4 className={styles.currency} onClick={(e)=> this.handleClick(e)}>{this.state.currency}</h4>
                             : this.props.currencies.map((el, index) => (
-                                <h4 className={styles.currency} onClick={(e)=> this.handleClick(e)} key={index}>{el.symbol}{el.label}</h4>
+                                <h4 className={styles.currency} onClick={(e)=> this.handleClick(e)} key={index}>{el.symbol} {el.label}</h4>
                             ))
                         )}
                     </div>
@@ -79,7 +80,8 @@ function mapStateToProps(state){
 function mapDispatchToProps(dispatch){
     return{
         getCategories: () => dispatch(getCategories()),
-        getCurrencies: () => dispatch(getCurrencies())
+        getCurrencies: () => dispatch(getCurrencies()),
+        setCurrentCurrency: (currency) => dispatch(setCurrentCurrency(currency))
     }
 }
 

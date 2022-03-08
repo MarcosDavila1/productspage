@@ -13,8 +13,7 @@
     display: flex;
     border-top: 1px solid rgb(168, 168, 168);  
     width: 100%;
-    justify-content: space-between; 
-    max-height: 15rem; 
+    justify-content: space-between;
 }
 .containeritem:last-child{
     border-bottom: 1px solid rgb(168, 168, 168);
@@ -27,6 +26,7 @@
     align-items: flex-start;
 }
 .name{
+    margin-top: 1rem;
     font-weight: 600;
     font-size: 1.5rem;
     margin-bottom: 0;
@@ -39,6 +39,7 @@
 }
 .amount{
     margin-top: 1rem;
+    margin-bottom: 0;
     font-weight: 700;
     font-size: 1.2rem;
 }
@@ -63,10 +64,30 @@
 .image{
     margin-right: 6rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
+    min-width: 13rem;
 }
 .image img{
     max-width: 10rem;
     max-height: 10rem;
+}
+.selectattributes{
+    display: flex;
+    align-items: center;
+}
+.selectattributes:last-child{
+    margin-bottom: 1rem;
+}
+.selectattributes p{
+    margin: 0;
+    margin-right: 1rem;
+    padding: 0.5rem;
+    border: 1px solid #000;
+    transition: 0.2s;
+}
+.selectattributes p:hover{
+    background-color: #000;
+    color: #fff;
+    transition: 0.2s;
 }

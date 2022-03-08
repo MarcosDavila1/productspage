@@ -4,6 +4,7 @@ const initialState = {
     allProducts: [],
     productDetail: {},
     currencies: [],
+    currentCurrencyIndex: 0,
     cart:[]
 }
 
@@ -25,7 +26,7 @@ const reducer = (state = initialState, action) => {
         case 'GET_CURRENCYS':
             return{
                 ...state,
-                currencies: action.payload.data.currencies
+                currencies: action.payload.data.currencies,
             }
 
         case 'GET_PRODUCT_DETAIL':
@@ -37,9 +38,17 @@ const reducer = (state = initialState, action) => {
             }
 
         case 'ADD_CART':
+            Object.defineProperty(action.payload[0], 'cantidad', {value: 1})
             return{
                 ...state,
                 cart: [...state.cart, action.payload[0]]
+            }
+
+        case 'SET_CURRENT_CURRENCY':
+            const currencyIndex = state.currencies.findIndex(el => el.label === action.payload)
+            return{
+                ...state,
+                currentCurrencyIndex: currencyIndex
             }
 
         default:

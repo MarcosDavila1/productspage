@@ -96,3 +96,10 @@ export function addCart(product){
         payload: product
     }
 }
+
+export function setCurrentCurrency(currency){
+    return{
+        type: 'SET_CURRENT_CURRENCY',
+        payload: currency
+    }
+}

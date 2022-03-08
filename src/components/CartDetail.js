@@ -1,11 +1,16 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
 import styles from '../styles/cartdetail.module.css'
 
 class CartDetail extends Component {
 
+    handleSelect(el){
+        const i = document.getElementById(el)
+        i.classList.toggle('active')
+    }
+
     render() {
-        console.log(this.props.cart[0])
+        const cIndex = this.props.currentCurrencyIndex
         return (
             <div className={styles.container}>
                 <h4 className={styles.title}>CART</h4>
@@ -15,13 +20,22 @@ class CartDetail extends Component {
                             <div className={styles.infoitem}>
                                 <h4 className={styles.name}>{el.name}</h4>
                                 <h4 className={styles.brand}>{el.brand}</h4>
-                                <h4 className={styles.amount}>{el.prices[0].currency.symbol}{el.prices[0].amount}</h4>
-                                <h4>Atributos</h4>
+                                <h4 className={styles.amount}>{el.prices[cIndex].currency.symbol}{el.prices[cIndex].amount}</h4>                                
+                                {el.attributes && el.attributes?.map((ele, i) => (
+                                    <Fragment key={i}>
+                                        <h4 className={styles.attribute}>{ele.name.toUpperCase()}:</h4>
+                                        <div className={styles.selectattributes}>
+                                        {ele.items.map((elem, i) => (
+                                                <p id={elem.displayValue} onClick={()=> this.handleSelect(elem.displayValue)} key={i}>{elem.displayValue}</p>
+                                        ))}
+                                        </div>
+                                    </Fragment>
+                                ))} 
                             </div>
                             <div className={styles.image}>
                                 <div className={styles.btn}>
                                     <button type='button'>+</button>
-                                    <p>1</p>
+                                        <p>{el.cantidad}</p>
                                     <button type='button'>-</button>
                                 </div>
                                 <img src={el.gallery[0]} alt={el.name}/>
@@ -36,7 +50,8 @@ class CartDetail extends Component {
 
 function mapStateToProps(state){
     return{
-        cart: state.cart
+        cart: state.cart,
+        currentCurrencyIndex: state.currentCurrencyIndex
     }
 }
 

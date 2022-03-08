@@ -15,10 +15,15 @@ class ProductDetail extends Component {
         this.props.addCart(product)
     }
 
+    handleSelect(el){
+        const i = document.getElementById(el)
+        i.classList.toggle('active')
+    }
+
     render() {
         const product = this.props.productDetail
         const description = product[0]?.description
-        console.log(product[0]?.attributes[0].items)
+        const cIndex = this.props.currentCurrencyIndex
         return (
             <div className={styles.container}>
                 {product.length > 0 && (
@@ -34,18 +39,18 @@ class ProductDetail extends Component {
                         <div className={styles.content}>
                             <h4 className={styles.name}>{product[0]?.name}</h4>
                             <h4 className={styles.brand}>{product[0]?.brand}</h4>
-                            {product[0]?.attributes.map((el, i) => (
+                            {product[0]?.attributes?.map((el, i) => (
                                 <Fragment key={i}>
                                     <h4 className={styles.attribute}>{el.name.toUpperCase()}:</h4>
                                     <div className={styles.selectattributes}>
                                     {el.items.map((el, i) => (
-                                            <p key={i}>{el.displayValue}</p>
+                                            <p id={el.displayValue} onClick={()=> this.handleSelect(el.displayValue)} key={i}>{el.displayValue}</p>
                                     ))}
                                     </div>
                                 </Fragment>
                             ))}                          
                             <h4 className={styles.price}>PRICE:</h4>
-                            <h4 className={styles.amount}>{product[0]?.prices[0].currency.symbol}{product[0].prices[0].amount}</h4>
+                            <h4 className={styles.amount}>{product[0]?.prices[cIndex].currency.symbol}{product[0].prices[cIndex].amount}</h4>
                             <button onClick={(e)=>this.handleClick(e, product)} className={styles.btnaddcart}>Add to Cart</button>
                             <p className={styles.description}>{description}</p>
                         </div>
@@ -60,7 +65,8 @@ function mapStateToProps(state){
     return{
         allProducts: state.allProducts,
         productDetail: state.productDetail,
-        cart: state.cart
+        cart: state.cart,
+        currentCurrencyIndex: state.currentCurrencyIndex
     }
 }
 

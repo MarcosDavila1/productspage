@@ -10,3 +10,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+.active{
+  background-color: #000;
+  color: #fff;
+  transition: 0.2s;
+}
