@@ -14,7 +14,6 @@ class CategoryPage extends Component {
         const category = this.props.match.params.category;
         const indexCategory = this.props.products.data?.categories.findIndex(el => el.name === category)
         const cIndex = this.props.currentCurrencyIndex
-        console.log(cIndex)
         return (
             <div id='background' className={styles.container}>
                 <div className={styles.title}>

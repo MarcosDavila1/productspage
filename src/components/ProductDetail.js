@@ -27,7 +27,6 @@ class ProductDetail extends Component {
             description = description.slice(3, product[0]?.description.length - 4)
         }
         const cIndex = this.props.currentCurrencyIndex
-        console.log(description)
         return (
             <div id='backgrounddetail' className={styles.container}>
                 {product.length > 0 && (

@@ -103,3 +103,24 @@ export function setCurrentCurrency(currency){
         payload: currency
     }
 }
+
+export function removeItemCart(name){
+    return{
+        type: 'REMOVE_ITEM_CART',
+        payload: name
+    }
+}
+
+export function addItemCart(name){
+    return{
+        type: 'ADD_ITEM_CART',
+        payload: name
+    }
+}
+
+export function decrementItemCart(name){
+    return{
+        type: 'DECREMENT_ITEM_CART',
+        payload: name
+    }
+}

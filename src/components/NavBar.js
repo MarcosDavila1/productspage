@@ -1,6 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux';
-import { getCategories, getCurrencies, setCurrentCurrency } from '../redux/action';
+import { getCategories, getCurrencies, setCurrentCurrency, removeItemCart, addItemCart, decrementItemCart } from '../redux/action';
 import styles from '../styles/navbar.module.css'
 import cart from '../images/cart.png'
 import { NavLink } from 'react-router-dom';
@@ -57,11 +57,23 @@ class NavBar extends Component {
         back?.classList.remove('dontshow')
     }
 
+    handleRemoveItem(name, cantidad){
+        if(cantidad === 1){
+            this.props.removeItemCart(name)
+        } else{
+            this.props.decrementItemCart(name)
+        }
+    }
+
+    handleAddItem(name){
+        this.props.addItemCart(name)
+    }
+
     render() {
         const cIndex = this.props.currentCurrencyIndex
         let sum = 0
         const sym = this.props.cart[0]?.prices[cIndex].currency.symbol
-        this.props.cart.map(el => sum = sum + el.prices[cIndex].amount)
+        this.props.cart.map(el => sum = sum + el.prices[cIndex]?.amount)
         return (
             <Fragment>
             <div className={styles.container}>
@@ -122,9 +134,9 @@ class NavBar extends Component {
                                 </div>
                                 <div className={styles.image}>
                                     <div className={styles.btn}>
-                                        <button type='button'>+</button>
+                                        <button onClick={()=> this.handleAddItem(el.name)} type='button'>+</button>
                                             <p>{el.cantidad}</p>
-                                        <button type='button'>-</button>
+                                        <button onClick={()=> this.handleRemoveItem(el.name, el.cantidad)} type='button'>-</button>
                                     </div>
                                     <img src={el.gallery[0]} alt={el.name}/>
                                 </div>
@@ -164,7 +176,10 @@ function mapDispatchToProps(dispatch){
     return{
         getCategories: () => dispatch(getCategories()),
         getCurrencies: () => dispatch(getCurrencies()),
-        setCurrentCurrency: (currency) => dispatch(setCurrentCurrency(currency))
+        setCurrentCurrency: (currency) => dispatch(setCurrentCurrency(currency)),
+        removeItemCart: (name)=> dispatch(removeItemCart(name)),
+        addItemCart: (name)=> dispatch(addItemCart(name)),
+        decrementItemCart: (name)=> dispatch(decrementItemCart(name))
     }
 }
 

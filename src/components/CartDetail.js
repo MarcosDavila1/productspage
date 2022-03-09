@@ -1,5 +1,6 @@
 import React, { Component, Fragment } from 'react'
 import { connect } from 'react-redux'
+import { removeItemCart, addItemCart, decrementItemCart } from '../redux/action'
 import styles from '../styles/cartdetail.module.css'
 
 class CartDetail extends Component {
@@ -7,6 +8,18 @@ class CartDetail extends Component {
     handleSelect(el){
         const i = document.getElementById(el)
         i.classList.toggle('active')
+    }
+
+    handleRemoveItem(name, cantidad){
+        if(cantidad === 1){
+            this.props.removeItemCart(name)
+        } else{
+            this.props.decrementItemCart(name)
+        }
+    }
+
+    handleAddItem(name){
+        this.props.addItemCart(name)
     }
 
     render() {
@@ -34,9 +47,9 @@ class CartDetail extends Component {
                             </div>
                             <div className={styles.image}>
                                 <div className={styles.btn}>
-                                    <button type='button'>+</button>
+                                    <button onClick={()=> this.handleAddItem(el.name)} type='button'>+</button>
                                         <p>{el.cantidad}</p>
-                                    <button type='button'>-</button>
+                                    <button onClick={()=> this.handleRemoveItem(el.name, el.cantidad)} type='button'>-</button>
                                 </div>
                                 <img src={el.gallery[0]} alt={el.name}/>
                             </div>
@@ -57,4 +70,12 @@ function mapStateToProps(state){
     }
 }
 
-export default connect(mapStateToProps, null)(CartDetail)
+function mapDispatchToProps(dispatch){
+    return{
+        removeItemCart: (name)=> dispatch(removeItemCart(name)),
+        addItemCart: (name)=> dispatch(addItemCart(name)),
+        decrementItemCart: (name)=> dispatch(decrementItemCart(name))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(CartDetail)

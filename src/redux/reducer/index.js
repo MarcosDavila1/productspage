@@ -51,6 +51,31 @@ const reducer = (state = initialState, action) => {
                 currentCurrencyIndex: currencyIndex
             }
 
+        case 'REMOVE_ITEM_CART':
+            const newarr = [...state.cart]?.filter(el => el.name !== action.payload)
+            return{
+                ...state,
+                cart: newarr
+            }
+
+        case 'ADD_ITEM_CART':
+            const elem = state.cart?.filter(el => el.name === action.payload)
+            var {cantidad , ...myUpdatedObject} = elem[0];
+            Object.defineProperty(myUpdatedObject, 'cantidad', {value: cantidad + 1})
+            return{
+                ...state,
+                cart: [...state.cart.filter(el => el.name !== action.payload), myUpdatedObject]
+            }
+
+        case 'DECREMENT_ITEM_CART':
+            const eleme = state.cart?.filter(el => el.name === action.payload)
+            var {cantidad , ...myUpdatedObj} = eleme[0];
+            Object.defineProperty(myUpdatedObj, 'cantidad', {value: cantidad - 1})
+            return{
+                ...state,
+                cart: [...state.cart.filter(el => el.name !== action.payload), myUpdatedObj]
+            }
+
         default:
             return {
                 ...state
