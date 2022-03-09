@@ -12,9 +12,9 @@ class CartDetail extends Component {
     render() {
         const cIndex = this.props.currentCurrencyIndex
         return (
-            <div className={styles.container}>
+            <div id='backgroundcart' className={styles.container}>
                 <h4 className={styles.title}>CART</h4>
-                {this.props.cart.length > 0 && (
+                {this.props.cart.length > 0 ? (
                     this.props.cart.map((el,i)=> (
                         <div key={i} className={styles.containeritem}>
                             <div className={styles.infoitem}>
@@ -42,7 +42,9 @@ class CartDetail extends Component {
                             </div>
                         </div>
                     ))
-                )}
+                )
+                : <div className={styles.containercartempty}><h2 className={styles.cartempty}>Your cart is empty</h2></div>
+                }
             </div>
         )
     }

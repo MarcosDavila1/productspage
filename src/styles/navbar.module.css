@@ -3,6 +3,10 @@
     justify-content: space-between;
     padding: 1.5rem 0;
     max-height: 2rem;
+    position: fixed;
+    z-index: 10;
+    background-color: #fff;
+    width: 100%;
 }
 .categories{
     display: flex;
@@ -42,9 +46,12 @@
 .currencycontainer{
     display: flex;
     flex-direction: column;
+    /* background-color: #fff; */
+    height: 11rem;
     z-index: 10;
 }
 .currencycontainer h4{
+    cursor: pointer;
     margin: 0rem 1rem;
     font-weight: 500;
 }
@@ -57,6 +64,7 @@
     margin: 0 1rem;
 }
 .cartcontainer img{
+    cursor: pointer;
     max-width: 1.5rem;
     margin: 0;
     position: fixed;
@@ -79,6 +87,7 @@
     width: 30%;
     background-color: #fff;
     transition: 0.2s ease-in;
+    top: 5rem;
 }
 .minicart span{
     font-weight: 700;
@@ -193,4 +202,19 @@
     background-color: rgb(23, 196, 81);
     border: 1px solid rgb(23, 196, 81);
     transition: 0.2s;
+}
+.totalcart{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 1rem;
+    margin-bottom: 1rem;
+}
+.total{
+    font-size: 1.3rem;
+    font-weight: 700;
+}
+.totalamount{
+    font-size: 1.3rem;
+    font-weight: 700;
 }

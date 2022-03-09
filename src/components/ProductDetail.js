@@ -22,8 +22,12 @@ class ProductDetail extends Component {
 
     render() {
         const product = this.props.productDetail
-        const description = product[0]?.description
+        let description = product[0]?.description
+        if(description?.endsWith('>')){
+            description = description.slice(3, product[0]?.description.length - 4)
+        }
         const cIndex = this.props.currentCurrencyIndex
+        console.log(description)
         return (
             <div id='backgrounddetail' className={styles.container}>
                 {product.length > 0 && (
@@ -52,7 +56,7 @@ class ProductDetail extends Component {
                             <h4 className={styles.price}>PRICE:</h4>
                             <h4 className={styles.amount}>{product[0]?.prices[cIndex].currency.symbol}{product[0].prices[cIndex].amount}</h4>
                             <button onClick={(e)=>this.handleClick(e, product)} className={styles.btnaddcart}>Add to Cart</button>
-                            <p className={styles.description}>{description}</p>
+                            <p id='description' className={styles.description}>{description}</p>
                         </div>
                     </Fragment>
                 )}

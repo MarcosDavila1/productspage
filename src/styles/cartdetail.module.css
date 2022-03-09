@@ -57,6 +57,7 @@
     transition: 0.2s;
 }
 .btn button:hover{
+    cursor: pointer;
     background-color: #000;
     color: #fff;
     transition: 0.2s;
@@ -87,7 +88,18 @@
     transition: 0.2s;
 }
 .selectattributes p:hover{
+    cursor: pointer;
     background-color: #000;
     color: #fff;
     transition: 0.2s;
+}
+.containercartempty{
+    display: flex;
+    width: 100%;
+    padding-top: 8rem;
+    justify-content: center;
+}
+.cartempty{
+    font-size: 2rem;
+    font-weight: 500;
 }

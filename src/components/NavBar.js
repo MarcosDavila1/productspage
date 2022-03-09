@@ -29,6 +29,12 @@ class NavBar extends Component {
         })
         const pika = e.target.textContent.split(" ")
         this.props.setCurrentCurrency(pika[1])
+        const back = document.getElementById('background')
+        const backgrounddetail = document.getElementById('backgrounddetail')
+        const currencycontainer = document.getElementById('currencycontainer')
+        back?.classList.toggle('dontshow')
+        backgrounddetail?.classList.toggle('dontshow')
+        currencycontainer?.classList.toggle('backcart')
     }
 
     handleClickCart(){
@@ -37,8 +43,10 @@ class NavBar extends Component {
         })
         const back = document.getElementById('background')
         const backgrounddetail = document.getElementById('backgrounddetail')
+        const backgroundcart = document.getElementById('backgroundcart')
         back?.classList.toggle('dontshow')
         backgrounddetail?.classList.toggle('dontshow')
+        backgroundcart?.classList.toggle('dontshow')
     }
 
     handleCloseMiniCart(){
@@ -51,6 +59,9 @@ class NavBar extends Component {
 
     render() {
         const cIndex = this.props.currentCurrencyIndex
+        let sum = 0
+        const sym = this.props.cart[0]?.prices[cIndex].currency.symbol
+        this.props.cart.map(el => sum = sum + el.prices[cIndex].amount)
         return (
             <Fragment>
             <div className={styles.container}>
@@ -65,7 +76,7 @@ class NavBar extends Component {
                     <img src={bag} alt="bag logo"/>
                 </div>
                 <div className={styles.clientcontainer}>
-                    <div className={styles.currencycontainer}>
+                    <div id='currencycontainer' className={styles.currencycontainer}>
                         {this.props.currencies.length > 0 && (
                             !this.state.despliegue
                             ? <h4 className={styles.currency} onClick={(e)=> this.handleClick(e)}>{this.state.currency}</h4>
@@ -118,17 +129,21 @@ class NavBar extends Component {
                                     <img src={el.gallery[0]} alt={el.name}/>
                                 </div>
                             </div>
-                            <div className={styles.checkoutcart}>
-                                <Link to={'/resume/cart'} onClick={()=> this.handleCloseMiniCart()}>                                
-                                    <button type='button' className={styles.viewbag}>VIEW BAG</button>
-                                    <button type='button' className={styles.checkout}>CHECKOUT</button>
-                                </Link>
-                            </div>
                             </Fragment>
                         ))
                     )
                     : <h4 className={styles.emptycart}>Your cart is empty</h4>
                     }
+                    <div className={styles.totalcart}>
+                        <h4 className={styles.total}>Total</h4>
+                        <h4 className={styles.totalamount}>{sym}{Math.trunc(sum)}</h4>
+                    </div>
+                    <div className={styles.checkoutcart}>
+                        <Link to={'/resume/cart'} onClick={()=> this.handleCloseMiniCart()}>                                
+                            <button type='button' className={styles.viewbag}>VIEW BAG</button>
+                            <button type='button' className={styles.checkout}>CHECKOUT</button>
+                        </Link>
+                    </div>
                 </div>
             }
             </Fragment>
